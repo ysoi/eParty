@@ -16,8 +16,8 @@
         z-index:1;
         padding:0.1rem;
         width:7.3rem;
-        height:34px;
-        line-height:34px;
+        height:0.68rem;
+        line-height:0.68rem;
         background:rgb(219,0,0);
         position:fixed;
         top:0;
@@ -26,7 +26,7 @@
 
         .left img{
             width:2.92rem;
-            height:34px;
+            height:0.68rem;
         }
         .right{
             

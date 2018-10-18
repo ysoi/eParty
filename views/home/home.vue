@@ -2,21 +2,21 @@
     <div class="home-wrap">
         <MyHead></MyHead>
         <div class="swiper">
-            <mt-swipe 
+            <mt-swipe clas="mt-swipe"
             :auto="4000" 
             :show-indicators="true"
             :continuous="true"
             >
-                <mt-swipe-item><img src="@/public/imgs/swiper/01.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item><img src="@/public/imgs/swiper/02.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item><img src="@/public/imgs/swiper/03.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item><img src="@/public/imgs/swiper/04.png" alt=""/></mt-swipe-item>
+                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/01.png" alt=""/></mt-swipe-item>
+                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/02.png" alt=""/></mt-swipe-item>
+                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/03.png" alt=""/></mt-swipe-item>
+                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/04.png" alt=""/></mt-swipe-item>
             </mt-swipe>
         </div>
         <div class="choose">
             <div class="menu">
                 <div>
-                    <router-link to="/login">
+                    <router-link to="/newList">
                         <div class="item">
                             <img src="@/public/imgs/choose/01.png" alt="">
                             <span>信工新闻眼</span>
@@ -24,7 +24,7 @@
                     </router-link>
                 </div>
                 <div>
-                    <router-link to="/login">
+                    <router-link to="/handLife">
                         <div class="item">
                             <img src="@/public/imgs/choose/02.png" alt="">
                             <span>掌上组生活</span>
@@ -42,7 +42,7 @@
             </div>
             <div class="menu">
                 <div>
-                    <router-link to="/login">
+                    <router-link to="/partyBulid">
                         <div  class="item">
                             <img src="@/public/imgs/choose/04.png" alt="">
                             <span>党员一点通</span>
@@ -50,7 +50,7 @@
                     </router-link>
                 </div>
                 <div>
-                    <router-link to="/login">
+                    <router-link to="/showIndentify">
                         <div  class="item">
                             <img src="@/public/imgs/choose/05.png" alt="">
                             <span>党员亮身份</span>
@@ -58,7 +58,7 @@
                     </router-link>
                 </div>
                 <div>
-                    <router-link to="/login">
+                    <router-link to="/articalDetail">
                         <div  class="item">
                             <img src="@/public/imgs/choose/06.png" alt="">
                             <span>党史上今天</span>
@@ -72,12 +72,12 @@
         <div class="column">
             <div class="item"></div>
             <div class="item">
-                <router-link to="/login" class="itme-top"></router-link>
-                 <router-link to="/login" class="item-bottom"></router-link>
+                <router-link to="/newList" class="item-top"></router-link>
+                 <router-link to="/newList" class="item-bottom"></router-link>
             </div>
              <div class="item">
-                <router-link to="/login" class="itme-top"></router-link>
-                 <router-link to="/login" class="itme-top"></router-link>
+                <router-link to="/login" class="item-top"></router-link>
+                 <router-link to="/newList" class="item-bottom"></router-link>
             </div>
         </div>
         <TabBar></TabBar>
@@ -100,7 +100,11 @@ export default {
 .home-wrap {
      padding-top:0.88rem;
    padding-bottom:1.1rem;
-  .swiper {
+   .swiper{
+      height: 4.7rem;
+      width: 100%;
+   }
+  .swiper .mt-swipe .item img {
     height: 4.7rem;
     width: 100%;
   }
@@ -124,12 +128,35 @@ export default {
       margin-top:0;
       width:100%;
       height:3.2rem;
+     
       background-image:url("../../public/imgs/column/01.png");
       background-size:100% 3.2rem;
       display:flex;
+    //   justify-content
      
-      .itme{
-         flex:1;
+      .item{
+        
+          display:flex;
+          flex-direction:column;
+          height:100%;
+          
+        //flex是flex-grow、flow-shrink、flow-basis
+        //flex-grow 相对于其它项目的扩展量
+        //flow-shrink 收缩量
+        //flow-basis 项目长度 auto (1 1 auto) none(0 0 auto) initial(0 1 auto)
+        
+
+         flex:1 1 auto;
+         
+      }
+      .item .item-top{
+        flex:1 1 auto;
+        // width:0.6rem;   
+           
+      }
+      .item .item-bottom{
+        flex:1 1 auto;
+        // width:0.6rem;
       }
     //   .middle-right{
     //       display:flex;
