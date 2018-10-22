@@ -1,12 +1,12 @@
 <template>
     <div class="hand-wrap">
-        <HeaderChild></HeaderChild>
+        <HeaderChild ref="head"></HeaderChild>
         <div class="show-img">
             <img src="../../public/imgs/party/02.jpg" alt="">
         </div>
         <div class="party-menu">
             <div class="party-item">
-                <router-link to="/newList"  class="router-link">
+                <router-link to="/policyStudy"  class="router-link">
                     <img src="../../public/imgs/icon/icon1.png" alt="">
                     <div>政治学习</div>
                 </router-link>
@@ -34,7 +34,7 @@
                 
             </div>
             <div class="party-item">
-                <router-link to="/newList"  class="router-link">
+                <router-link to="/findOrganize"  class="router-link">
                     <img src="../../public/imgs/icon/icon5.png" alt="">
                     <div>流动党员找组织</div>
                 </router-link>
@@ -45,11 +45,26 @@
 </template>
 
 <script>
-    import HeaderChild from "@/components/HeaderChild/index";
+    import HeaderChild from "@/components/headerChild/index";
     export default {
         name:"handLife",
         components:{
             HeaderChild
+        },
+        data(){
+            return{
+                text:"掌上组织生活",
+            }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.getHead();
+            })
+        },
+        methods:{
+            getHead(){
+               this.$refs.head.$refs.title.innerHTML=this.text;
+            },
         }
     }
 </script>

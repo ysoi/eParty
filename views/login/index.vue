@@ -1,13 +1,14 @@
 <template>
     <div class="login-wrap">
-        <HeaderChild></HeaderChild>
+        <HeaderChild ref="head"></HeaderChild>
         
         <div class="unique-img"><img src="../../public/imgs/logo.png" alt=""></div>
         <div class="login-form">
-            <form action="" method="post">
-                <input type="text" placeholder="身份证号">
-                <input type="text" placeholder="密码">
-                <mt-button type="primary" size="large" class="mt-button">登录</mt-button>
+            <form >
+                <input type="text" placeholder="身份证号" v-model="formData.id">
+                <input type="password" placeholder="密码" v-model="formData.password">
+                <mt-button type="primary" size="large" class="mt-button" @click=handleLogin>登录</mt-button>
+                <!-- <button type="primary" size="large" class="mt-button" @click=handleLogin>登录</button> -->
             </form>
         </div>
     
@@ -15,11 +16,48 @@
 </template>
 
 <script>
-import HeaderChild from "@/components/HeaderChild/index";
+import HeaderChild from "@/components/headerChild/index";
+import {MessageBox} from "mint-ui";
 export default {
   name: "login",
   components: {
     HeaderChild
+  },
+  data(){
+      return{
+          text:"登录",
+          formData:{
+             id:'',
+             password:'',
+             
+          }
+      }
+  },
+   mounted(){
+      this.$nextTick(()=>{
+        this.getHead();
+       })
+    },
+  methods:{
+       getHead(){
+         this.$refs.head.$refs.title.innerHTML=this.text;
+        },
+        //token的作用
+        handleLogin(){
+            const form=new FormData();
+            form.append('id_card',this.formData.id);
+            form.append('password',this.formData.password);
+            this.$axios.post('user/userLogin.do', form).then(res=>{
+                if(res.code==1){
+                  MessageBox.alert(res.msg);
+                //    console.log( this.$dialog);
+                  
+                  
+                    // this.$router.push('/myParty');
+                }
+            })
+        }
+
   }
 };
 </script>
@@ -47,9 +85,17 @@ export default {
                 // margin-bottom:0.2rem;
                 border:solid 0.02rem yellow;
                 border-radius:0.08rem;
+               
+                font-size:0.36rem;
+                font-weight:400;
+                // ::-wbkit-input-placeholder{
+                //     color:#fff;
+                // }  
+              
+            }
+            input::-webkit-input-placeholder{
                 color:#fff;
-                font-size:0.28rem;
-                font-weight:400;           
+                font-size:0.36rem;
             }
             .mt-button{
                  margin-top:0.4rem;

@@ -1,13 +1,18 @@
 <template>
     <div class="headerChild">
-        <router-link to="/" class="left"><img src="@/public/imgs/icon/04.png" alt=""></router-link>
-        <h6>信工新闻眼</h6>
+        <router-link ref="goback" to="/" class="left"><img src="@/public/imgs/icon/04.png" alt=""></router-link>
+        <h6 ref="title"></h6>
     </div>
 </template>
 
 <script>
     export default {
-        name:"headerChild"
+        name:"headerChild",
+        data(){
+            return{
+              
+            }
+        }
         
     }
 </script>

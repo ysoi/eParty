@@ -5,6 +5,11 @@ import NewList from "@/views/newList/index";
 import HandLife from "@/views/handLife/index";
 import ArticalDetail from "@/views/articalDetail/index";
 import Login from "@/views/login/index";
+import AnyPhoto from "@/views/anyPhoto/index";
+import Inform from "@/views/inform/index";
+import MyParty from "@/views/myParty/index";
+import MapToday from "@/views/mapToday/index";
+import FindOrganize from "@/views/findOrganize/index";
 Vue.use(Router);
 
 export default new Router({
@@ -20,6 +25,26 @@ export default new Router({
       component:NewList
     },
     {
+      path:'/anyStudy',
+      name:'anyStudy',
+      component:NewList
+    },
+    {
+      path:'/studyDoing',
+      name:'studyDoing',
+      component:NewList
+    },
+    {
+      path:'/studyGoing',
+      name:'studyGoing',
+      component:NewList
+    },
+    {
+      path:'/policyStudy',
+      name:'policyStudy',
+      component:NewList
+    },
+    {
       path:'/handLife',
       name:'handLife',
       component:HandLife
@@ -31,16 +56,11 @@ export default new Router({
     },
     {
       path:'/showIndentify',
-      name:'partyBulid',
+      name:'showIndentify',
       component:NewList
     },
     {
-      path:'/mapToday',
-      name:'mapToday',
-      component:NewList
-    },
-    {
-      path:'/articalDetail',
+      path:'/articalDetail/:newsId',
       name:'articalDetail',
       component:ArticalDetail
     },
@@ -48,6 +68,37 @@ export default new Router({
       path:'/login',
       name:'login',
       component:Login
+    },
+    {
+      path:'/anyPhoto',
+      name:'anyPhoto',
+      component:AnyPhoto
+    },
+    {
+      path:'/inform',
+      name:'inform',
+      component:Inform
+    },
+    {
+      path:'/myParty',
+      name:'myParty',
+      component:MyParty
+    },
+    {
+      path:'/mapToday',
+      name:'mapToday',
+      component:MapToday
+    },
+    {
+      path:'/findOrganize',
+      name:'findOrganize',
+      component:FindOrganize
+    },
+    //login之后
+    {
+      path:'/userInfo',
+      name:'userInfo',
+      component:()=>import("@/views/userInfo/index")
     },
   ]
 })

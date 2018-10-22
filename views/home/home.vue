@@ -7,10 +7,15 @@
             :show-indicators="true"
             :continuous="true"
             >
-                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/01.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/02.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/03.png" alt=""/></mt-swipe-item>
-                <mt-swipe-item class="item"><img src="@/public/imgs/swiper/04.png" alt=""/></mt-swipe-item>
+                <mt-swipe-item class="item" 
+                v-for="item in rows"
+                :key="item.id"
+                >
+                    <router-link :to="{name:'articalDetail',params:{newsId:item.url}}">
+                        <img :src="item.imgUrl" alt=""/>
+                    </router-link>
+                </mt-swipe-item>
+              
             </mt-swipe>
         </div>
         <div class="choose">
@@ -58,7 +63,7 @@
                     </router-link>
                 </div>
                 <div>
-                    <router-link to="/articalDetail">
+                    <router-link to="/mapToday">
                         <div  class="item">
                             <img src="@/public/imgs/choose/06.png" alt="">
                             <span>党史上今天</span>
@@ -72,12 +77,12 @@
         <div class="column">
             <div class="item"></div>
             <div class="item">
-                <router-link to="/newList" class="item-top"></router-link>
-                 <router-link to="/newList" class="item-bottom"></router-link>
+                <router-link to="/anyStudy" class="item-top"></router-link>
+                 <router-link to="/studyDoing" class="item-bottom"></router-link>
             </div>
              <div class="item">
-                <router-link to="/login" class="item-top"></router-link>
-                 <router-link to="/newList" class="item-bottom"></router-link>
+                <router-link to="/anyPhoto" class="item-top"></router-link>
+                 <router-link to="/studyGoing" class="item-bottom"></router-link>
             </div>
         </div>
         <TabBar></TabBar>
@@ -92,6 +97,25 @@ export default {
   components: {
     MyHead,
     TabBar
+  },
+  data(){
+      return{
+          type:0,
+          rows:[]
+      }
+  },
+  created(){
+      this.getData();
+  },
+  methods:{
+      getData(){
+          this.$axios.get(`/carousel/carouselList.do?type=${this.type}`).then(res=>{
+              if(res.code==1){
+                this.rows=res.rows;  
+              }
+            //   console.log(res);
+          })
+      }
   }
 };
 </script>
